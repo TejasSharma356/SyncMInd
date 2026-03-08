@@ -24,12 +24,7 @@ SyncMind is an **AI-powered meeting assistant** that works silently in the backg
 - **AI Insights** — Automatically generated summaries, recommendations, and action items
 - **Profile & Settings** — User management with Light/Dark theme toggle
 
-### 🫧 Floating Overlay (Liquid UI)
-- **Bubble Mode** — Minimal floating circle with live capture timer
-- **Panel Mode** — Expandable 3-tab panel (Insights / Tasks / Risks)
-- **Draggable** — Freely position anywhere on screen
-- **Stealth Mode** — CSS class to hide during screen sharing
-- **Start/Stop Toggle** — One-click activation from the sidebar
+
 
 ### 🎨 Design
 - Glassmorphism dark UI with backdrop blur
@@ -100,8 +95,7 @@ syncmind/
 │   │   ├── Insights.jsx           # Insights & recommendations page
 │   │   ├── Settings.jsx           # Settings + theme toggle
 │   │   ├── Profile.jsx            # User profile page
-│   │   ├── FloatingOverlay.jsx    # Draggable AI overlay (bubble + panel)
-│   │   ├── FloatingOverlay.css    # Overlay animations
+
 │   │   ├── FloatingLines.jsx      # Three.js background effect
 │   │   └── FloatingLines.css      # Background styles
 │   ├── data/
@@ -122,7 +116,7 @@ syncmind/
 - [x] Landing page with 3D background
 - [x] Dashboard with meeting management
 - [x] Dark/Light theme toggle
-- [x] Floating AI overlay with drag & tabs
+
 - [ ] 🔜 Desktop application (standalone software)
 - [ ] 🔜 Real-time audio capture & transcription
 - [ ] 🔜 AI-powered insight generation (LLM integration)

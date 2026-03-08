@@ -1,7 +1,7 @@
 import React from 'react';
 import { LayoutGrid, Lightbulb, Settings, User, Video } from 'lucide-react';
 
-const Sidebar = ({ activeView, onNavigate, onStartCapture, isCapturing }) => {
+const Sidebar = ({ activeView, onNavigate }) => {
     const menuItems = [
         { id: 'meetings', icon: Video, label: 'Meetings' },
         { id: 'insights', icon: Lightbulb, label: 'Insights' },
@@ -41,16 +41,6 @@ const Sidebar = ({ activeView, onNavigate, onStartCapture, isCapturing }) => {
                 </nav>
             </div>
 
-            <button
-                onClick={onStartCapture}
-                className={`w-full font-medium py-3 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-md ${isCapturing
-                        ? 'bg-red-500 hover:bg-red-600 text-white shadow-red-200 dark:shadow-none'
-                        : 'bg-brand-blue hover:bg-blue-600 text-white shadow-blue-200 dark:shadow-none'
-                    }`}
-            >
-                <div className={`w-2.5 h-2.5 rounded-full ${isCapturing ? 'bg-white rec-dot' : 'bg-white'}`}></div>
-                {isCapturing ? 'Stop Capture' : 'Start Capture'}
-            </button>
         </div>
     );
 };

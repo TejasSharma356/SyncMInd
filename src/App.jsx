@@ -6,7 +6,7 @@ import Insights from './components/Insights';
 import Settings from './components/Settings';
 import Profile from './components/Profile';
 import LandingPage from './components/LandingPage';
-import FloatingOverlay from './components/FloatingOverlay';
+
 import { meetings, transcriptData } from './data/mockData';
 
 function App() {
@@ -19,9 +19,7 @@ function App() {
   const selectedTranscriptItems = transcriptData[selectedMeetingId] || [];
 
   const [darkMode, setDarkMode] = useState(false);
-  const [isCapturing, setIsCapturing] = useState(false);
 
-  const toggleCapture = () => setIsCapturing(prev => !prev);
 
   // Toggle Dark Mode
   React.useEffect(() => {
@@ -75,7 +73,7 @@ function App() {
     <div className={`flex h-screen font-sans overflow-hidden ${darkMode ? 'dark bg-gray-950' : 'bg-gray-50'}`}>
       {/* Left Sidebar */}
       <div className="w-64 flex-shrink-0 relative z-20">
-        <Sidebar activeView={currentView} onNavigate={setCurrentView} onStartCapture={toggleCapture} isCapturing={isCapturing} />
+        <Sidebar activeView={currentView} onNavigate={setCurrentView} />
       </div>
 
       {/* Main Content Area */}
@@ -83,8 +81,7 @@ function App() {
         {renderContent()}
       </div>
 
-      {/* Floating Overlay */}
-      <FloatingOverlay isCapturing={isCapturing} onStopCapture={() => setIsCapturing(false)} />
+
     </div>
   );
 }

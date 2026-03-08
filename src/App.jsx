@@ -7,7 +7,7 @@ import Settings from './components/Settings';
 import Profile from './components/Profile';
 import LandingPage from './components/LandingPage';
 
-const API_ENDPOINT = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 function App() {
   const [showLanding, setShowLanding] = useState(true);
   const [currentView, setCurrentView] = useState('meetings');
@@ -21,9 +21,9 @@ function App() {
   useEffect(() => {
     const fetchMeetings = async () => {
       try {
-        const res = await fetch(API_ENDPOINT);
-        if (!res.ok) throw new Error('Failed to fetch');
-        const data = await res.json();
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error('Failed to fetch');
+        const data = await response.json();
 
         // Sort by newest first
         const sortedData = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));

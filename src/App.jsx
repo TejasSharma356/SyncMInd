@@ -7,9 +7,7 @@ import Settings from './components/Settings';
 import Profile from './components/Profile';
 import LandingPage from './components/LandingPage';
 
-// import { meetings, transcriptData } from './data/mockData';
-
-const API_ENDPOINT = "https://05lgwo27oj.execute-api.us-east-1.amazonaws.com/default/SyncMind";
+const API_ENDPOINT = import.meta.env.VITE_API_URL;
 function App() {
   const [showLanding, setShowLanding] = useState(true);
   const [currentView, setCurrentView] = useState('meetings');

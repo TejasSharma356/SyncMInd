@@ -42,6 +42,16 @@ const MeetingDetails = ({ meeting }) => {
 
             {/* Content */}
             <div className="flex-1 overflow-y-auto p-8 space-y-10">
+                {/* Transcript */}
+                {meeting.transcript && (
+                    <section>
+                        <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                            Transcript
+                        </h2>
+                        <TranscriptChat transcript={meeting.transcript} />
+                    </section>
+                )}
+
                 {/* Key Points */}
                 {meeting.key_points && meeting.key_points.length > 0 && (
                     <section>
@@ -93,16 +103,6 @@ const MeetingDetails = ({ meeting }) => {
                                 </div>
                             ))}
                         </div>
-                    </section>
-                )}
-
-                {/* Transcript */}
-                {meeting.transcript && (
-                    <section>
-                        <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                            Transcript
-                        </h2>
-                        <TranscriptChat transcript={meeting.transcript} />
                     </section>
                 )}
             </div>

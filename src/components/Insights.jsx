@@ -15,7 +15,7 @@ const Insights = ({ meetings = [] }) => {
 
     return (
         <div className="h-full overflow-y-auto bg-gray-50/50 dark:bg-black transition-colors duration-200">
-            <div className="w-full max-w-4xl ml-auto mr-12 px-6 py-12 flex flex-col gap-6">
+            <div className="w-full max-w-5xl mx-auto px-6 py-12 flex flex-col gap-6">
                 <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-3">
                     <Lightbulb className="text-yellow-500" />
                     Insights & Recommendations

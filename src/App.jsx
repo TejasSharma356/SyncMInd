@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import MeetingList from './components/MeetingList';
 import MeetingDetails from './components/MeetingDetails';
@@ -7,16 +7,46 @@ import Settings from './components/Settings';
 import Profile from './components/Profile';
 import LandingPage from './components/LandingPage';
 
-import { meetings, transcriptData } from './data/mockData';
+// import { meetings, transcriptData } from './data/mockData';
 
+const API_ENDPOINT = "https://05lgwo27oj.execute-api.us-east-1.amazonaws.com/default/SyncMind";
 function App() {
   const [showLanding, setShowLanding] = useState(true);
   const [currentView, setCurrentView] = useState('meetings');
-  const [selectedMeetingId, setSelectedMeetingId] = useState(1);
+  const [meetings, setMeetings] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedMeetingId, setSelectedMeetingId] = useState(null);
 
-  // Derive the selected meeting and its transcript
-  const selectedMeeting = meetings.find(m => m.id === selectedMeetingId);
-  const selectedTranscriptItems = transcriptData[selectedMeetingId] || [];
+  // Derive the selected meeting
+  const selectedMeeting = meetings.find(m => m.meetingId === selectedMeetingId) || null;
+
+  useEffect(() => {
+    const fetchMeetings = async () => {
+      try {
+        const res = await fetch(API_ENDPOINT);
+        if (!res.ok) throw new Error('Failed to fetch');
+        const data = await res.json();
+
+        // Sort by newest first
+        const sortedData = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+        setMeetings(sortedData);
+        // Automatically select the first meeting on initial load if none selected
+        if (!selectedMeetingId && sortedData.length > 0) {
+          setSelectedMeetingId(sortedData[0].meetingId);
+        }
+      } catch (err) {
+        console.error("Failed to fetch meetings", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchMeetings();
+    const interval = setInterval(fetchMeetings, 5000);
+    return () => clearInterval(interval);
+  }, []); // Remove selectedMeetingId from dep array to avoid re-selecting on every poll unless empty
+
 
   const [darkMode, setDarkMode] = useState(false);
 
@@ -57,7 +87,6 @@ function App() {
             <div className="flex-1 h-full bg-white dark:bg-gray-900 relative">
               <MeetingDetails
                 meeting={selectedMeeting}
-                transcript={selectedTranscriptItems}
               />
             </div>
           </div>

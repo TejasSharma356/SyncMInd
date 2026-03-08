@@ -65,7 +65,7 @@ function App() {
   const renderContent = () => {
     switch (currentView) {
       case 'insights':
-        return <Insights />;
+        return <Insights meetings={meetings} />;
       case 'settings':
         return <Settings darkMode={darkMode} toggleTheme={toggleTheme} />;
       case 'profile':

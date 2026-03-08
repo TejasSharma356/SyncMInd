@@ -94,6 +94,18 @@ const MeetingDetails = ({ meeting }) => {
                         </div>
                     </section>
                 )}
+
+                {/* Transcript */}
+                {meeting.transcript && (
+                    <section>
+                        <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                            Transcript
+                        </h2>
+                        <div className="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-xl border border-gray-100 dark:border-gray-800 text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-medium whitespace-pre-line">
+                            {meeting.transcript}
+                        </div>
+                    </section>
+                )}
             </div>
 
             {/* Footer Status */}

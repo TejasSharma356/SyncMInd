@@ -31,7 +31,7 @@ const MeetingList = ({ meetings, selectedId, onSelect }) => {
                         <div className="flex justify-between items-start mb-1">
                             <h3 className={`font-semibold text-sm leading-tight pr-6 line-clamp-2 ${selectedId === meeting.meetingId ? 'text-gray-900 dark:text-white' : 'text-gray-800 dark:text-gray-200'
                                 }`}>
-                                {meeting.summary || "Untitled Meeting"}
+                                {meeting.title || meeting.summary || "Untitled Meeting"}
                             </h3>
                         </div>
 

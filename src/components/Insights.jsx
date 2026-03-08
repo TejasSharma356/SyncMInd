@@ -22,7 +22,7 @@ const Insights = ({ meetings = [] }) => {
                             <div key={meeting.meetingId} className="bg-white dark:bg-gray-900 p-6 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm transition-all">
                                 <div className="flex justify-between items-start mb-4">
                                     <h3 className="font-semibold text-lg text-gray-900 dark:text-white">
-                                        {meeting.summary || "Untitled Meeting"}
+                                        {meeting.title || meeting.summary || "Untitled Meeting"}
                                     </h3>
                                     <span className="text-xs font-semibold text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded flex-shrink-0">
                                         {new Date(meeting.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}

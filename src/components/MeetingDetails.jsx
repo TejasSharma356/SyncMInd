@@ -18,7 +18,7 @@ const MeetingDetails = ({ meeting }) => {
             <div className="px-8 py-6 border-b border-gray-100 dark:border-gray-800 flex justify-between items-start sticky top-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm z-10 transition-colors">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-3">
-                        {meeting.summary || "Untitled Meeting"}
+                        {meeting.title || meeting.summary || "Untitled Meeting"}
                         <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">
                             AI PROCESSED
                         </span>

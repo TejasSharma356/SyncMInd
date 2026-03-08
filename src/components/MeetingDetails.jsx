@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar, Users, Share, MoreVertical } from 'lucide-react';
 import AIInsightCard from './AIInsightCard';
+import TranscriptChat from './TranscriptChat';
 
 const MeetingDetails = ({ meeting }) => {
     if (!meeting) {
@@ -101,9 +102,7 @@ const MeetingDetails = ({ meeting }) => {
                         <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                             Transcript
                         </h2>
-                        <div className="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-xl border border-gray-100 dark:border-gray-800 text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-medium whitespace-pre-line">
-                            {meeting.transcript}
-                        </div>
+                        <TranscriptChat transcript={meeting.transcript} />
                     </section>
                 )}
             </div>

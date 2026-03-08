@@ -32,9 +32,12 @@ function App() {
 
         setMeetings(sortedData);
         // Automatically select the first meeting on initial load if none selected
-        if (!selectedMeetingId && sortedData.length > 0) {
-          setSelectedMeetingId(sortedData[0].meetingId);
-        }
+        setSelectedMeetingId(prev => {
+          if (!prev && sortedData.length > 0) {
+            return sortedData[0].meetingId;
+          }
+          return prev;
+        });
       } catch (err) {
         console.error("Failed to fetch meetings", err);
       } finally {

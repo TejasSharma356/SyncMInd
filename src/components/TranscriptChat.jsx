@@ -9,7 +9,7 @@ const TranscriptChat = ({ transcript }) => {
     // Render speakers in uniform left-aligned blocks.
 
     return (
-        <div className="flex flex-col gap-4 mt-2">
+        <div className="flex flex-col items-start gap-4 mt-2">
             {lines.map((line, i) => {
                 // Parse speaker name before the colon
                 const splitIndex = line.indexOf(':');

@@ -72,34 +72,37 @@ const LandingPage = ({ onLaunch, onAbout, onGetSoftware, onFeatures, onWatchDemo
                         SyncMInd silently records your calls, transcribes every word, and surfaces key insights and action items automatically — so you never miss a detail again.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="flex flex-col gap-6 w-full">
+                        <div className="flex flex-col sm:flex-row gap-4">
+                            <button
+                                onClick={onGetSoftware}
+                                className="inline-flex items-center gap-2.5 font-semibold px-8 py-4 rounded-xl text-base transition-all hover:scale-105 active:scale-95"
+                                style={{
+                                    background: 'linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.06))',
+                                    boxShadow: 'inset 0 0 0 1px rgba(255,255,255,.28), 0 10px 30px rgba(0,0,0,.25)',
+                                    backdropFilter: 'blur(6px)',
+                                }}
+                            >
+                                Get the Software
+                            </button>
+                            <button
+                                onClick={onWatchDemo}
+                                className="inline-flex items-center gap-2 font-semibold px-8 py-4 rounded-xl text-base transition-all hover:bg-white/10"
+                                style={{
+                                    boxShadow: 'inset 0 0 0 1px rgba(255,255,255,.22)',
+                                    backdropFilter: 'blur(4px)',
+                                }}
+                            >
+                                <Play size={18} fill="currentColor" /> Watch Demo
+                            </button>
+                        </div>
+
                         <button
                             onClick={onLaunch}
-                            className="inline-flex items-center gap-2.5 font-semibold px-8 py-4 rounded-xl text-base transition-all hover:scale-105 active:scale-95 bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-500/20 text-white"
+                            className="w-fit inline-flex items-center gap-2.5 font-semibold px-8 py-4 rounded-xl text-base transition-all hover:scale-105 active:scale-95 bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-500/20 text-white"
                         >
                             Open Dashboard
                             <ArrowRight size={18} />
-                        </button>
-                        <button
-                            onClick={onGetSoftware}
-                            className="inline-flex items-center gap-2.5 font-semibold px-8 py-4 rounded-xl text-base transition-all hover:scale-105 active:scale-95"
-                            style={{
-                                background: 'linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.06))',
-                                boxShadow: 'inset 0 0 0 1px rgba(255,255,255,.28), 0 10px 30px rgba(0,0,0,.25)',
-                                backdropFilter: 'blur(6px)',
-                            }}
-                        >
-                            Get the Software
-                        </button>
-                        <button
-                            onClick={onWatchDemo}
-                            className="inline-flex items-center gap-2 font-semibold px-8 py-4 rounded-xl text-base transition-all hover:bg-white/10"
-                            style={{
-                                boxShadow: 'inset 0 0 0 1px rgba(255,255,255,.22)',
-                                backdropFilter: 'blur(4px)',
-                            }}
-                        >
-                            <Play size={18} fill="currentColor" /> Watch Demo
                         </button>
                     </div>
                 </section>

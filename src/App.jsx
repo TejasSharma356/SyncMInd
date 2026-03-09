@@ -6,10 +6,16 @@ import Insights from './components/Insights';
 import Settings from './components/Settings';
 import Profile from './components/Profile';
 import LandingPage from './components/LandingPage';
+import AboutPage from './components/AboutPage';
+import ProjectInfoPage from './components/ProjectInfoPage';
+import FeaturesPage from './components/FeaturesPage';
 
 const API_URL = import.meta.env.VITE_API_URL;
 function App() {
   const [showLanding, setShowLanding] = useState(true);
+  const [showAbout, setShowAbout] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
+  const [showFeatures, setShowFeatures] = useState(false);
   const [currentView, setCurrentView] = useState('meetings');
   const [meetings, setMeetings] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -49,7 +55,7 @@ function App() {
   }, []); // Remove selectedMeetingId from dep array to avoid re-selecting on every poll unless empty
 
 
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
 
   // Toggle Dark Mode
@@ -87,6 +93,7 @@ function App() {
             {/* Right Panel - Meeting Details */}
             <div className="flex-1 h-full bg-white dark:bg-gray-900 relative">
               <MeetingDetails
+                key={selectedMeeting?.meetingId || 'empty'}
                 meeting={selectedMeeting}
               />
             </div>
@@ -95,8 +102,36 @@ function App() {
     }
   };
 
+  if (showInfo) {
+    return <ProjectInfoPage
+      onBack={() => setShowInfo(false)}
+      onGetSoftware={() => { setShowInfo(false); setShowAbout(true); }}
+      onLaunch={() => { setShowInfo(false); setShowLanding(false); }}
+    />;
+  }
+
+  if (showAbout) {
+    return <AboutPage
+      onBack={() => setShowAbout(false)}
+      onLaunch={() => { setShowAbout(false); setShowLanding(false); }}
+    />;
+  }
+
+  if (showFeatures) {
+    return <FeaturesPage
+      onBack={() => setShowFeatures(false)}
+      onGetSoftware={() => { setShowFeatures(false); setShowAbout(true); }}
+      onLaunch={() => { setShowFeatures(false); setShowLanding(false); }}
+    />;
+  }
+
   if (showLanding) {
-    return <LandingPage onLaunch={() => setShowLanding(false)} />;
+    return <LandingPage
+      onLaunch={() => setShowLanding(false)}
+      onAbout={() => setShowInfo(true)}
+      onGetSoftware={() => setShowAbout(true)}
+      onFeatures={() => setShowFeatures(true)}
+    />;
   }
 
   return (

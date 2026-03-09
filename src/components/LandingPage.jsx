@@ -1,29 +1,33 @@
 import React from 'react';
-import { ArrowRight, CheckCircle, Zap, Shield, Users } from 'lucide-react';
-import FloatingLines from './FloatingLines';
+import { ArrowRight } from 'lucide-react';
+import { AetherHero } from './ui/aether-hero';
 
-const LandingPage = ({ onLaunch }) => {
+const LandingPage = ({ onLaunch, onAbout, onGetSoftware, onFeatures }) => {
     return (
-        <div className="min-h-screen bg-[#0a0a0a] font-sans text-white relative overflow-hidden">
-            {/* Background Animation */}
-            <div className="absolute inset-0 z-0">
-                <FloatingLines
-                    enabledWaves={["top", "middle", "bottom"]}
-                    lineCount={9}
-                    lineDistance={7}
-                    bendRadius={4}
-                    bendStrength={0.5}
-                    interactive={true}
-                    parallax={true}
-                    mixBlendMode="screen"
-                    linesGradient={['#4f46e5', '#818cf8', '#c084fc']} // Blue/Purple gradient
+        <div
+            className="min-h-screen font-sans text-white relative"
+            style={{ fontFamily: "'Space Grotesk', ui-sans-serif, system-ui, -apple-system, sans-serif" }}
+        >
+            {/* Google Font */}
+            <link
+                rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap"
+            />
+
+            {/* Fixed WebGL background — stays in place as you scroll */}
+            <div className="fixed inset-0 z-0">
+                <AetherHero
+                    height="100%"
+                    overlayGradient="linear-gradient(180deg, #000000bb 0%, #00000055 40%, transparent 70%, #000000aa 100%)"
                 />
             </div>
 
+            {/* Scrollable content on top */}
             <div className="relative z-10">
-                {/* Navbar */}
-                <div className="flex justify-center pt-8 px-4 relative z-20">
-                    <nav className="flex items-center gap-8 px-6 py-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl">
+
+                {/* Sticky Navbar */}
+                <div className="flex justify-center pt-8 px-4 sticky top-0 z-20 pb-2">
+                    <nav className="flex items-center gap-8 px-6 py-3 bg-black/30 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl">
                         <div className="flex items-center gap-2">
                             <div className="w-7 h-7 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/20">
                                 <div className="w-0.5 h-2.5 bg-white mx-0.5 rounded-full"></div>
@@ -34,9 +38,9 @@ const LandingPage = ({ onLaunch }) => {
                         </div>
 
                         <div className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-300">
-                            <a href="#" className="hover:text-white hover:bg-white/5 px-3 py-1.5 rounded-lg transition-all">Features</a>
+                            <button onClick={onFeatures} className="hover:text-white hover:bg-white/5 px-3 py-1.5 rounded-lg transition-all">Features</button>
                             <a href="#" className="hover:text-white hover:bg-white/5 px-3 py-1.5 rounded-lg transition-all">Pricing</a>
-                            <a href="#" className="hover:text-white hover:bg-white/5 px-3 py-1.5 rounded-lg transition-all">About</a>
+                            <button onClick={onAbout} className="hover:text-white hover:bg-white/5 px-3 py-1.5 rounded-lg transition-all">About</button>
                         </div>
 
                         <button
@@ -48,82 +52,67 @@ const LandingPage = ({ onLaunch }) => {
                     </nav>
                 </div>
 
-                {/* Hero Section */}
-                <div className="max-w-7xl mx-auto px-8 py-20 md:py-32 flex flex-col items-center text-center relative z-20">
-                    <div className="inline-flex items-center gap-2 bg-blue-500/10 text-blue-300 px-4 py-1.5 rounded-full text-sm font-semibold mb-8 border border-blue-500/20 backdrop-blur-md">
-                        <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                        </span>
-                        New: AI Silent Teammate 2.0
-                    </div>
-                    <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 max-w-4xl text-white">
-                        Your meetings, <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">perfectly synced </span>
+                {/* Hero Section — full viewport height */}
+                <section className="min-h-screen flex flex-col items-start justify-center px-16 md:px-24 max-w-5xl py-32">
+                    <h1
+                        className="font-bold tracking-tight mb-6 leading-tight text-white"
+                        style={{ fontSize: 'clamp(2.8rem, 6vw, 5rem)', lineHeight: 1.05, letterSpacing: '-0.02em', textShadow: '0 6px 36px rgba(0,0,0,0.5)' }}
+                    >
+                        Your meetings,{' '}
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                            perfectly synced
+                        </span>{' '}
                         and recalled.
                     </h1>
-                    <p className="text-xl text-gray-200 max-w-2xl mb-10 leading-relaxed font-medium">
-                        SyncMInd joins your calls, transcribes in real-time, and generates actionable insights automatically. Never miss a detail again.
+
+                    <p
+                        className="text-gray-200 mb-10 leading-relaxed max-w-2xl"
+                        style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)', textShadow: '0 4px 24px rgba(0,0,0,0.4)' }}
+                    >
+                        SyncMInd silently records your calls, transcribes every word, and surfaces key insights and action items automatically — so you never miss a detail again.
                     </p>
+
                     <div className="flex flex-col sm:flex-row gap-4">
                         <button
                             onClick={onLaunch}
-                            className="flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-500/25"
+                            className="inline-flex items-center gap-2.5 font-semibold px-8 py-4 rounded-xl text-base transition-all hover:scale-105 active:scale-95 bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-500/20 text-white"
                         >
-                            Launch Dashboard
-                            <ArrowRight size={20} />
+                            Open Dashboard
+                            <ArrowRight size={18} />
                         </button>
-                        <button className="flex items-center justify-center gap-2 bg-white/5 border border-white/10 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white/10 transition-colors backdrop-blur-sm">
-                            View Demo
+                        <button
+                            onClick={onGetSoftware}
+                            className="inline-flex items-center gap-2.5 font-semibold px-8 py-4 rounded-xl text-base transition-all hover:scale-105 active:scale-95"
+                            style={{
+                                background: 'linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.06))',
+                                boxShadow: 'inset 0 0 0 1px rgba(255,255,255,.28), 0 10px 30px rgba(0,0,0,.25)',
+                                backdropFilter: 'blur(6px)',
+                            }}
+                        >
+                            Get the Software
+                        </button>
+                        <button
+                            onClick={onAbout}
+                            className="inline-flex items-center gap-2 font-semibold px-8 py-4 rounded-xl text-base transition-all hover:bg-white/10"
+                            style={{
+                                boxShadow: 'inset 0 0 0 1px rgba(255,255,255,.22)',
+                                backdropFilter: 'blur(4px)',
+                            }}
+                        >
+                            Learn More
                         </button>
                     </div>
-                </div>
+                </section>
 
-                {/* Features Grid */}
-                <div className="py-24 relative z-20">
-                    <div className="max-w-7xl mx-auto px-8">
-                        <div className="grid md:grid-cols-3 gap-8">
-                            {[
-                                {
-                                    icon: Zap,
-                                    title: "Real-time Transcription",
-                                    desc: "Identify speakers and capture every word instantly with 99% accuracy.",
-                                    delay: "0s"
-                                },
-                                {
-                                    icon: Shield,
-                                    title: "Private & Secure",
-                                    desc: "Enterprise-grade encryption ensures your meeting data stays strictly confidential.",
-                                    delay: "2s"
-                                },
-                                {
-                                    icon: Users,
-                                    title: "Team Alignment",
-                                    desc: "Automatically distribute action items and summaries to keeps everyone on the same page.",
-                                    delay: "4s"
-                                }
-                            ].map((feature, idx) => (
-                                <div
-                                    key={idx}
-                                    className="bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-500 animate-float hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/10"
-                                    style={{ animationDelay: feature.delay }}
-                                >
-                                    <div className="w-14 h-14 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center text-blue-400 mb-6 shadow-inner border border-white/5">
-                                        <feature.icon size={28} />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
-                                    <p className="text-gray-300 leading-relaxed">{feature.desc}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
+                {/* ── Additional sections can be added here ────────────────── */}
+                {/* e.g. <FeaturesSection />, <TestimonialsSection />, etc.    */}
+                {/*  The fixed background will show through all sections.       */}
 
                 {/* Footer */}
-                <footer className="border-t border-white/5 py-12 relative z-20">
-                    <div className="max-w-7xl mx-auto px-8 text-center text-gray-500 text-sm">
-                        &copy; 2026 SyncMInd Inc. All rights reserved.
-                    </div>
+                <footer className="border-t border-white/5 py-10 text-center text-gray-500 text-xs">
+                    &copy; 2026 SyncMInd Inc. All rights reserved.
                 </footer>
+
             </div>
         </div>
     );

@@ -11,7 +11,7 @@
 
 ---
 
-## � Live Deployment
+## 🚀 Live Deployment
 
 Check out the live web dashboard: **[https://sync-mind.vercel.app/](https://sync-mind.vercel.app/)**
 
@@ -37,7 +37,7 @@ Once the recording stops, the magic happens.
   - 📝 Full speaker-diarized transcripts
   - 🎯 High-level summaries & Key Points
   - ✅ Actionable Tasks & Commitments
-  - � Intelligent "Silent Teammate" Insights
+  - 🧠 Intelligent "Silent Teammate" Insights
 - Processed data is stored rapidly in **AWS DynamoDB**.
 
 ### 3. Deliver (Web Dashboard)
@@ -84,7 +84,7 @@ Our web application acts as the nerve center for all your meeting data.
 
 ---
 
-## �️ Local Development
+## 🛠️ Local Development
 
 Want to spin up the web dashboard locally?
 
